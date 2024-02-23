@@ -545,6 +545,18 @@ def edit_profile_view(request):
 def aboutus_view(request):
     return render(request,'ecom/aboutus.html')
 
+def gallery_view(request):
+    products=models.Product.objects.all()
+    return render(request,'ecom/gallery.html',{'products':products})
+
+def allproducts_view(request):
+    products=models.Product.objects.all()
+    return render(request,'ecom/allproducts.html',{'products':products})
+
+def single_product_view(request,pk):
+    product=models.Product.objects.get(id=pk)
+    return render(request,'ecom/single_product.html',{'product':product})
+
 def contactus_view(request):
     sub = forms.ContactusForm()
     if request.method == 'POST':

@@ -4,7 +4,9 @@
   {% include "ecom/components/head.html" %}
 
   <body>
+    <!-- Topbar Start -->
     {% include "ecom/components/navbar_top.html" %}
+    <!-- Topbar End -->
 
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-0">
@@ -325,9 +327,11 @@
         <div class="packages-carousel owl-carousel">
           {% for p in products %}
           <div class="packages-item">
+            <!-- Product Image -->
+            <!-- src="{% static 'img/packages-4.jpg' %}" -->
             <div class="packages-img">
               <img
-                src="{% static 'img/packages-4.jpg' %}"
+                src="{% static p.product_image.url %}"
                 class="img-fluid w-100 rounded-top"
                 alt="Image"
               />
@@ -336,30 +340,17 @@
             </div>
             <div class="packages-content bg-light">
               <div class="p-4 pb-0">
-                <h5 class="mb-0">Venice - Italy</h5>
-                <small class="text-uppercase">Hotel Deals</small>
-                <div class="mb-3">
-                  <small class="fa fa-star text-primary"></small>
-                  <small class="fa fa-star text-primary"></small>
-                  <small class="fa fa-star text-primary"></small>
-                  <small class="fa fa-star text-primary"></small>
-                  <small class="fa fa-star text-primary"></small>
-                </div>
-                <p class="mb-4">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Nesciunt nemo quia quae illum aperiam fugiat voluptatem
-                  repellat
-                </p>
+                <h5 class="mb-0">{{p.name}}</h5>
+                <br />
+                <p class="mb-4">{{p.description}}</p>
               </div>
               <div class="row bg-primary rounded-bottom mx-0">
                 <div class="col-6 text-start px-0">
-                  <a href="#" class="btn-hover btn text-white py-2 px-4"
+                  <a
+                    href="{% url 'single-product' pk=p.pk %}"
+                    target="_blank"
+                    class="btn-hover btn text-white py-2 px-4"
                     >Read More</a
-                  >
-                </div>
-                <div class="col-6 text-end px-0">
-                  <a href="#" class="btn-hover btn text-white py-2 px-4"
-                    >Book Now</a
                   >
                 </div>
               </div>
@@ -370,75 +361,6 @@
       </div>
     </div>
     <!-- Packages End -->
-
-    <!-- Gallery Start -->
-    <div id="rd-gallery" class="container-fluid gallery py-5 my-5">
-      <div class="mx-auto text-center mb-5" style="max-width: 900px">
-        <h5 class="section-title px-3">Our Gallery</h5>
-        <h1 class="mb-4">Products Gallery.</h1>
-      </div>
-      <div class="tab-class text-center">
-        <div class="tab-content">
-          <div id="GalleryTab-1" class="tab-pane fade show p-0 active">
-            <div class="row g-2">
-              <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
-                <div class="gallery-item h-100">
-                  <img
-                    src="{% static 'img/gallery-1.jpg' %}"
-                    class="img-fluid w-100 h-100 rounded"
-                    alt="Image"
-                  />
-                  <div class="gallery-content">
-                    <div class="gallery-info">
-                      <h5 class="text-white text-uppercase mb-2">
-                        {{p.description}}
-                      </h5>
-                      <a href="#" class="btn-hover text-white"
-                        >View All Place <i class="fa fa-arrow-right ms-2"></i
-                      ></a>
-                    </div>
-                  </div>
-                  <div class="gallery-plus-icon">
-                    <a
-                      href="{% static 'img/gallery-1.jpg' %}"
-                      data-lightbox="gallery-1"
-                      class="my-auto"
-                      ><i class="fas fa-plus fa-2x text-white"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                <div class="gallery-item h-100">
-                  <img
-                    src="{% static 'img/gallery-2.jpg' %}"
-                    class="img-fluid w-100 h-100 rounded"
-                    alt="Image"
-                  />
-                  <div class="gallery-content">
-                    <div class="gallery-info">
-                      <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                      <a href="#" class="btn-hover text-white"
-                        >View All Place <i class="fa fa-arrow-right ms-2"></i
-                      ></a>
-                    </div>
-                  </div>
-                  <div class="gallery-plus-icon">
-                    <a
-                      href="{% static 'img/gallery-2.jpg' %}"
-                      data-lightbox="gallery-2"
-                      class="my-auto"
-                      ><i class="fas fa-plus fa-2x text-white"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Gallery End -->
 
     <!-- Tour Booking Start -->
     <div id="rd-contact" class="container-fluid booking py-5">
@@ -529,9 +451,6 @@
                   industry standards for advanced and automated electroplating
                   technology.
                 </p>
-                <a href="#" class="btn btn-primary rounded-pill py-2 px-4"
-                  >Read More</a
-                >
               </div>
             </div>
           </div>
@@ -559,9 +478,6 @@
                   efficient powder coating applications for a wide range of
                   industrial needs.
                 </p>
-                <a href="#" class="btn btn-primary rounded-pill py-2 px-4"
-                  >Read More</a
-                >
               </div>
             </div>
           </div>
@@ -588,9 +504,6 @@
                   pollutant-free working environment, exemplifying their
                   dedication to effective industrial air quality management.
                 </p>
-                <a href="#" class="btn btn-primary rounded-pill py-2 px-4"
-                  >Read More</a
-                >
               </div>
             </div>
           </div>
@@ -723,7 +636,7 @@
     <!-- Testimonial End -->
 
     <!-- Subscribe Start -->
-    <div class="container-fluid subscribe py-5">
+    <div id="rd-brochure" class="container-fluid subscribe py-5">
       <div class="container text-center py-5">
         <div class="mx-auto text-center" style="max-width: 900px">
           <h5 class="subscribe-title px-3">Brochure</h5>
